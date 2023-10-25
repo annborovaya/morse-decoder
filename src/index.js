@@ -38,7 +38,20 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    const splitExpr = [];
+    for (let i = 0; i < expr.length; i += 10) {
+        splitExpr.push(expr.substring(i, i + 10));
+    }
+
+    const newArr = splitExpr.map((elem) => {
+        return Number(elem).toString().replaceAll('10', '.').replaceAll('11', '-');
+    });
+
+    const result = newArr.map((elem) => {
+        return elem === 'NaN' ? ' ' : MORSE_TABLE[elem];
+    });
+
+    return result.join('');
 }
 
 module.exports = {
